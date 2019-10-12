@@ -1,7 +1,7 @@
 FROM openjdk:11-jdk-slim AS build-env
 ADD . /app
 WORKDIR /app
-CMD ["./gradlew", "--no-daemon", "-Dskip.tests=true", "build"]
+RUN /app/gradlew --no-daemon -Dskip.tests=true build
 
 FROM gcr.io/distroless/java:11
 COPY --from=build-env /app/build/libs /app
