@@ -7,4 +7,4 @@ jobs:
       - run: |
           echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
       - run: "docker build -t kamma/okex-websocket-metrics:$CIRCLE_SHA1 ."
-      - run: "docker push kamma/okex-websocket-metrics:latest:$CIRCLE_SHA1"
+      - run: "docker push kamma/okex-websocket-metrics:$CIRCLE_SHA1"
