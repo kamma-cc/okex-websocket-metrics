@@ -5,3 +5,4 @@ jobs:
     steps:
       - checkout
       - run: "docker version"
+      - run: "docker build -t kamma/okex-websocket-metrics:latest"
