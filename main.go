@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"compress/flate"
 	"github.com/gorilla/websocket"
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"io/ioutil"
 	"log"
@@ -13,7 +14,16 @@ import (
 	"time"
 )
 
+var (
+	promRecorder = prometheus.NewHistogram(prometheus.HistogramOpts{
+		Name:    "tbt_durations_histogram_seconds",
+		Help:    "RPC latency distributions.",
+		Buckets: prometheus.LinearBuckets(0, 0.001, 50),
+	})
+)
+
 func main() {
+	prometheus.MustRegister(promRecorder)
 	go runProm()
 	go connectOkex()
 	select {}
@@ -67,12 +77,7 @@ func connectOkex() {
 					parse, _ := time.Parse("2006-01-02T15:04:05.999999999Z", loc[1])
 					//log.Println(parse)
 					sub := time.Now().Sub(parse)
-					log.Println(sub)
-					if sub.Seconds() > 1 {
-						log.Println(sub)
-						log.Println(time.Now())
-						log.Println(string(text))
-					}
+					promRecorder.Observe(sub.Seconds())
 
 				}
 			}
