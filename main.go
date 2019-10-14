@@ -60,6 +60,11 @@ func connectOkex() {
 
 	for {
 		messageType, message, err := c.ReadMessage()
+		if err != nil {
+			log.Println("read:", err)
+			go connectOkex()
+			return
+		}
 		switch messageType {
 		case websocket.TextMessage:
 			// no need uncompressed
@@ -81,11 +86,11 @@ func connectOkex() {
 
 				}
 			}
+		case websocket.CloseMessage:
+			c.Close()
+			go connectOkex()
 		}
-		if err != nil {
-			log.Println("read:", err)
-			return
-		}
+
 	}
 
 }
