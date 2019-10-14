@@ -8,3 +8,8 @@ jobs:
           echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
       - run: "docker build -t kamma/okex-websocket-metrics:$CIRCLE_SHA1 ."
       - run: "docker push kamma/okex-websocket-metrics:$CIRCLE_SHA1"
+      - add_ssh_keys:
+          fingerprints:
+            - "66:16:0f:d9:18:d7:ad:fb:17:49:3d:cf:09:dc:0f:a2"
+      - run: "ssh ubuntu@18.162.89.100"
+      - run: "kubectl set image deployments okex-websocket-metrics-deployment=kamma/okex-websocket-metrics:$CIRCLE_SHA1"
