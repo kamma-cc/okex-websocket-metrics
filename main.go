@@ -40,8 +40,12 @@ func connectOkex() {
 
 	u := url.URL{
 		Scheme: "wss",
-		Host:   "okexcomreal.bafang.com:8443",
-		Path:   "ws/v3",
+		//Scheme: "ws",
+		//Host:   "okexcomreal.bafang.com:8443",
+		Host: "okexcomrealtest.bafang.com:10442",
+		//Host:   "real.okex.com:8443",
+		//Host:   "127.0.0.1:10442",
+		Path: "ws/v3",
 	}
 	log.Printf("connecting to %s", u.String())
 	c, _, err := websocket.DefaultDialer.Dial(u.String(), nil)
@@ -50,13 +54,15 @@ func connectOkex() {
 	}
 	defer c.Close()
 	log.Printf("connected: %s", u.String())
-	c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["futures/depth_l2_tbt:BTC-USD-191227"]}`))
-	c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["futures/depth_l2_tbt:ETH-USD-191227"]}`))
-	c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["futures/depth_l2_tbt:LTC-USD-191227"]}`))
-	c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["futures/depth_l2_tbt:EOS-USD-191227"]}`))
-	c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["futures/depth_l2_tbt:XRP-USD-191227"]}`))
-	c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["futures/depth_l2_tbt:BCH-USD-191227"]}`))
-	c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["futures/depth_l2_tbt:TRX-USD-191227"]}`))
+	//c.WriteMessage(websocket.TextMessage, []byte{0,0,127,127,255,255,0,255})
+	//c.WriteMessage(websocket.TextMessage, []byte("hello"))
+	//c.WriteMessage(websocket.TextMessage, []byte(`{"op":"jwt","args":"eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJleDExMDE1NzUwOTExMjY5NjQ0OTg0NDQ3Qjg2QjQxQzBDZmN2YyIsInVpZCI6ImNCK2ZtTWs2eWVpdGlhR1dQdzBQR2c9PSIsInN0YSI6MCwibWlkIjowLCJpYXQiOjE1NzUwOTExMjYsImV4cCI6MTU3NTY5NTkyNiwiYmlkIjowLCJkb20iOiJva2V4YmV0YS5iYWZhbmcuY29tIiwiaXNzIjoib2tjb2luIiwic3ViIjoiMzAwMjJGNEE5NzU3N0VFRjE0NUE5QTk4REM5RTk2MEUifQ.99aPWVeuUNr69ipNfoPYPW_2kVjBAtUXQ65eHi0A-dRQF5RUBpsHNFRZMBQjHEuN7CnukiEdM0fFJ3EC7N3WIw"}`))
+	c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["_debug/info"]}`))
+	c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["swap/depth_l2_tbt:BTC-USDT-SWAP"]}`))
+	//c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["futures/depth_l2_tbt:BTC-USD-200327"]}`))
+	//c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["option/depth:TBTC-USD-200117-6000-C"]}`))
+	//c.WriteMessage(websocket.TextMessage, []byte(`{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}{"op":"subscribe","args":["option/oomunit:TBTC-USD-200103-4000-C","option/candle60s:TBTC-USD-200103-4000-C","option/optimized_depth:TBTC-USD-200103-4000-C"]}`))
+	//c.WriteMessage(websocket.PingMessage, []byte(`fwaeawfwef`))
 
 	for {
 		messageType, message, err := c.ReadMessage()
@@ -82,6 +88,9 @@ func connectOkex() {
 					parse, _ := time.Parse("2006-01-02T15:04:05.999999999Z", loc[1])
 					//log.Println(parse)
 					sub := time.Now().Sub(parse)
+					if sub.Milliseconds() > 60 {
+						log.Printf("%d", sub.Milliseconds())
+					}
 					promRecorder.Observe(sub.Seconds())
 
 				}
