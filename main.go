@@ -42,8 +42,8 @@ func connectOkex() {
 		Scheme: "wss",
 		//Scheme: "ws",
 		//Host:   "okexcomreal.bafang.com:8443",
-		Host: "okexcomrealtest.bafang.com:10442",
-		//Host:   "real.okex.com:8443",
+		//Host: "okexcomrealtest.bafang.com:10442",
+		Host: "real.okex.com:8443",
 		//Host:   "127.0.0.1:10442",
 		Path: "ws/v3",
 	}
@@ -88,7 +88,7 @@ func connectOkex() {
 					parse, _ := time.Parse("2006-01-02T15:04:05.999999999Z", loc[1])
 					//log.Println(parse)
 					sub := time.Now().Sub(parse)
-					if sub.Milliseconds() > 3 {
+					if sub.Milliseconds() > -1 {
 						log.Printf("%d", sub.Milliseconds())
 					}
 					promRecorder.Observe(sub.Seconds())
