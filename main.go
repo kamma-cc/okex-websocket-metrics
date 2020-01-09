@@ -42,8 +42,8 @@ func connectOkex() {
 		Scheme: "wss",
 		//Scheme: "ws",
 		//Host:   "okexcomreal.bafang.com:8443",
-		//Host: "okexcomrealtest.bafang.com:10442",
-		Host: "real.okex.com:8443",
+		Host: "okexcomrealtest.bafang.com:10442",
+		//Host: "real.okex.com:8443",
 		//Host:   "127.0.0.1:10442",
 		Path: "ws/v3",
 	}
